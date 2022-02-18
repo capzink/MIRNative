@@ -1,9 +1,9 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Message } from "iconoir-react-native";
 
-import styles from "./itemList.style.js";
-import Tag from "../tag/Tag.js";
+import Tag from './Tag';
 
 const itemList = (props) => {
   const { picture, author, about, tags, comments, goTo } = props;
@@ -11,29 +11,29 @@ const itemList = (props) => {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <View style={styles.container}>
-        <View style={styles.image}>
+        <View style={styles.image__container}>
           <Image
-            style={styles.images}
+            style={styles.image}
             source={{
               uri: picture,
             }}
           />
         </View>
-        <View style={styles.detail}>
-          <Text style={styles.title} numberOfLines={2}>
+        <View style={styles.detail__container}>
+          <Text style={styles.title__text} numberOfLines={2}>
             {about}
           </Text>
-          <Text style={styles.author}>{author}</Text>
-          <View style={styles.tags}>
-            <ScrollView style={styles.tagsScroll}>
+          <Text style={styles.author__text}>{author}</Text>
+          <View style={styles.tags__container}>
+            <ScrollView style={styles.tags__scroll}>
               {tags.map((item, index) => (
                 <Tag key={index} title={item} />
               ))}
             </ScrollView>
           </View>
-          <TouchableOpacity style={styles.commentButton} onPress={goTo}>
+          <TouchableOpacity style={styles.comment__button} onPress={goTo}>
             <Message color="silver" height={24} width={24} />
-            <Text style={styles.comment}>{comments.length} Comments</Text>
+            <Text style={styles.comment__text}>{comments.length} Comments</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 
-  images: {
+  image__container: {
     width: "40%",
     height: "100%",
   },
@@ -60,38 +60,38 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
-  detail: {
+  detail__container: {
     width: "60%",
     height: "100%",
     paddingLeft: 10,
   },
-  title: {
+  title__text: {
     color: "#000",
     fontSize: 18,
     fontWeight: "600",
   },
 
-  author: {
+  author__text: {
     marginTop: 1,
     color: "silver",
     fontSize: 15,
     fontWeight: "500",
   },
 
-  tags: {
+  tags__container: {
     marginTop: 10,
     width: "100%",
     height: 40,
   },
 
-  tagsScroll: {
+  tags__scroll: {
     width: "100%",
     height: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
   },
 
-  commentButton: {
+  comment__button: {
     position: "absolute",
     bottom: 0,
     left: 15,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  comment: {
+  comment__text: {
     marginLeft: 10,
     color: "silver",
     fontSize: 14,
