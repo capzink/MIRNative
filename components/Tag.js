@@ -1,30 +1,27 @@
 import { View, Text } from "react-native";
-
 import { StyleSheet } from "react-native";
 
 const TagComponent = (props) => {
   const { title } = props;
 
   return (
-    <View style={styles.tag__container}>
-      <Text style={styles.tag__text}>{title.toUpperCase()}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{title.toUpperCase()}</Text>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  tag__container: {
+  container: {
     paddingVertical: 5,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    backgroundColor: "green",
+    paddingHorizontal: 6,  
     marginRight: 10,
     marginBottom: 5,
+    borderRadius: 5,
+    backgroundColor: "grey",
   },
-
-  tag__text: {
+  text: {
     textAlign: "center",
-    color: "#fff",
-    fontWeight: "600",
+    color: "white",
   },
 });
 

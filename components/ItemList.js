@@ -2,16 +2,15 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { Message } from "iconoir-react-native";
-
 import Tag from './Tag';
 
 const itemList = (props) => {
   const { picture, author, about, tags, comments, goTo } = props;
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View style={styles.bigContainer}>
       <View style={styles.container}>
-        <View style={styles.image__container}>
+        <View style={styles.imageContainer}>
           <Image
             style={styles.image}
             source={{
@@ -19,39 +18,44 @@ const itemList = (props) => {
             }}
           />
         </View>
-        <View style={styles.detail__container}>
-          <Text style={styles.title__text} numberOfLines={2}>
+        <View style={styles.detailContainer}>
+          <Text style={styles.Text} numberOfLines={2}>
             {about}
           </Text>
-          <Text style={styles.author__text}>{author}</Text>
-          <View style={styles.tags__container}>
-            <ScrollView style={styles.tags__scroll}>
+          <Text style={styles.authorText}>{author}</Text>
+          <View style={styles.tags}>
+            <ScrollView style={styles.scroll}>
               {tags.map((item, index) => (
                 <Tag key={index} title={item} />
               ))}
             </ScrollView>
           </View>
-          <TouchableOpacity style={styles.comment__button} onPress={goTo}>
             <Message color="silver" height={24} width={24} />
-            <Text style={styles.comment__text}>{comments.length} Comments</Text>
-          </TouchableOpacity>
+            <Text style={styles.smalltext}>{comments.length} Comments</Text>
+          
         </View>
       </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
+
+  bigContainer: { 
+    flex: 1, 
+    alignItems: "center", 
+    justifyContent: "center" },
+
   container: {
     width: "100%",
     height: 200,
-    paddingHorizontal: 20,
-    paddingVertical: 25,
+    paddingHorizontal: 15,
+    paddingVertical: 20,
     flexDirection: "row",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
 
-  image__container: {
-    width: "40%",
+  imageContainer: {
+    width: "35%",
     height: "100%",
   },
 
@@ -60,47 +64,38 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
-  detail__container: {
+  detailContainer: {
     width: "60%",
     height: "100%",
     paddingLeft: 10,
   },
-  title__text: {
-    color: "#000",
-    fontSize: 18,
+  Text: {
+    color: "black",
+    fontSize: 16,
     fontWeight: "600",
   },
 
-  author__text: {
+  authorText: {
     marginTop: 1,
     color: "silver",
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: "500",
   },
 
-  tags__container: {
+  tags: {
     marginTop: 10,
     width: "100%",
-    height: 40,
+    height: 30,
   },
 
-  tags__scroll: {
+  scroll: {
     width: "100%",
     height: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
   },
 
-  comment__button: {
-    position: "absolute",
-    bottom: 0,
-    left: 15,
-    width: 100,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-
-  comment__text: {
+   smalltext: {
     marginLeft: 10,
     color: "silver",
     fontSize: 14,
